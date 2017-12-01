@@ -5,10 +5,7 @@ This code is a node app that creates a server that can connect to a database tha
 
 1. You really want to watch the chat from Thursday, November 30th, 2017. We built this thing during that chat, and I explain why it works, and all the steps.  You can work along with the video if you want, or just use this bit if code as a starting point.
 
-2. You'll need to install some packages if you don't already have them. At the command line:
-npm install pg
-npm install koa
-npm install koa2-cors
+2. You'll need to install some packages, to connect to the database and serve web requests. These are defined in `package.json`, and you can install them all with `npm install`. New packages can be installed with `npm install --save my_package_name`.
 
 3. You'll have to have a database already running on your computer, for this app to connect to.  On line 19 you see a sample Select query that I wrote, because I have a table named bandinfo. Make your own queries that match your database.
 

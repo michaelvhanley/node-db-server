@@ -15,11 +15,8 @@ app.use(async (ctx) => {
       [table, theid] = url.substr(1).split('/').slice(-2);
   let result;
 
-  if(table == 'band'){
-    result = await pool.query('select * from bandinfo where id = ' + theid);
-  } else {
-    result = 'bad url';
-  }
+    result = await pool.query('select * from ' + table + ' where id = ' + theid);
+  
 
   ctx.body = result;
 });

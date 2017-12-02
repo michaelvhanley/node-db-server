@@ -15,8 +15,15 @@ app.use(async (ctx) => {
       [table, theid] = url.substr(1).split('/').slice(-2);
   let result;
 
-    result = await pool.query('select * from ' + table + ' where id = ' + theid);
-  
+  // For a small measure of security, block table names that
+  // aren't a single word or IDs that aren't integers.
+  if ( ! table.match(/^[a-zA-Z0-9_]+$/) ) {
+    throw "Not a valid table name: " + table;
+  }
+
+  theid = parseInt(theid, 10);
+
+  result = await pool.query('select * from ' + table + ' where id = ' + theid);
 
   ctx.body = result;
 });

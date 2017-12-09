@@ -17,4 +17,10 @@ PGUSER=[your database user]   PGHOST=localhost   PGPASSWORD=[your db password]  
 6. You can run ANY kind of Select you want, though.  What if you don't want only 1 record? You could edit this code and have it run any query you want, based on whatever value you put in the URL.  ctx.request.url tells you what the URL is, and you can check it and run the proper query. This allows you to put all the queries you need for your web application into a single pgae of code here.
 
 
-7. Now you have made an API that talks to your database.  You know how to connect to APIs with Javascript, right? 
+7. Now you have made an API that talks to your database.  You know how to connect to APIs with Javascript, right?
+
+UPDATES - DECEMBER 8:
+8. If you pass in 0 as a record number, as in http://localhost:4001/bandinfo/0, you will get back all records.  This is just a shortcut way to get all records without a separate route.  Feel free to change it.
+
+9. You can now serve static HTML files out of the pages directory in this app.  http://localhost:4001/bandinfo/1 will give you the result of "select * from bandinfo where id = 1;",
+ but http://localhost:4001/test.html will give you the test.html file inside the pages folder.  If you want to make your html files a part of the app, so that they can be hosted on a server later on, this is how you do it.

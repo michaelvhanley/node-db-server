@@ -3,11 +3,12 @@ const { Pool, Client } = require('pg');
 // pools will use environment variables
 // for connection information
 const pool = new Pool(),
+serve = require('koa-static');
 cors = require('koa2-cors'),
 koa = require('koa');
 
 const app = new koa();
-
+app.use(serve('./pages/'));
 app.use(cors());
 
 app.use(async (ctx) => {
@@ -22,8 +23,11 @@ app.use(async (ctx) => {
   }
 
   theid = parseInt(theid, 10);
-
-  result = await pool.query('select * from ' + table + ' where id = ' + theid);
+  if(theid == 0){
+    result = await pool.query('select * from ' + table);
+  } else {
+    result = await pool.query('select * from ' + table + ' where id = ' + theid);
+  }
 
   ctx.body = result;
 });

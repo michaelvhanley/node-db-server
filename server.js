@@ -10,7 +10,7 @@ koa = require('koa');
 const app = new koa();
 app.use(serve('./pages/'));
 app.use(cors());
-
+// insert some data here 
 app.use(async (ctx) => {
   let [url] = ctx.request.url.split('?'),
       [table, theid] = url.substr(1).split('/').slice(-2);

@@ -1,26 +1,45 @@
 <html>
-<body>
-My Test Getting Data from my DB
+  <h1>
+    Song Teaching Database
+  </h1>
+  <body>
+    Choose a Show
 
-</body>
+  <div id="buttons">
+  <div id="shows">
+    Buttons Should Be Above
+  </body>
 </html>
 
 <script>
 
   var dbRequest = new XMLHttpRequest();
-  
+
 
   dbRequest.onreadystatechange = function (){
     if (dbRequest.readyState == XMLHttpRequest.DONE) {
       var allData = JSON.parse(dbRequest.response);
-      console.log(allData);
-      document.body.innerHTML = JSON.stringify(allData.rows);
+      var buttonDiv = document.getElementsByTagName('buttons');
+
+
+      for (i=0; i < allData.rows.length; i++) {
+        var newbutton = document.createElement("Button");
+        var buttonText = document.createTextNode(allData.rows[i].show_title);
+      
+        newbutton.appendChild(buttonText);
+        document.body.appendChild(newbutton);
+
+      }
+
+
+      //var shows = document.getElementById("shows");
+    //  shows.innerHTML = JSON.stringify(allData.rows);
     }
 
 }
 
   dbRequest.open('GET', 'http://localhost:4001/shows/0',true);
-
   dbRequest.send();
+
 
 </script>

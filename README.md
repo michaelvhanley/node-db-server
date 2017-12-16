@@ -9,3 +9,13 @@ Database created and HTML set for page.
 UPDATE: 12/15
 
 HTML updated to separate input into individual shows and create HMTL button for each show from the DB.
+
+BUGS/ISSUES:
+
+The biggest bugs in this are molding the data into something more accessible to the general teacher public (who don't code).  At the moment the data is a little disorganized, but it's all there.
+
+TO DO:
+
+Add more data to the database, more songs, more shows
+Continue to improve the interface
+Continue to improve the structure and depth of the pedagogical data tables

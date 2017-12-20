@@ -7,7 +7,8 @@
 
   <div id="buttons">
   <div id="shows">
-    Buttons Should Be Above
+
+  <p Show Info: >
   </body>
 </html>
 
@@ -16,27 +17,68 @@
   var dbRequest = new XMLHttpRequest();
 
 
+
+
   dbRequest.onreadystatechange = function (){
     if (dbRequest.readyState == XMLHttpRequest.DONE) {
       var allData = JSON.parse(dbRequest.response);
-      var buttonDiv = document.getElementsByTagName('buttons');
+      var buttonDiv = document.getElementById('buttons');
+      var showDIV = document.getElementById("shows");
 
 
       for (i=0; i < allData.rows.length; i++) {
         var newbutton = document.createElement("Button");
         var buttonText = document.createTextNode(allData.rows[i].show_title);
-      
+        var showData = JSON.stringify(allData.rows[i]);
+
+
+
         newbutton.appendChild(buttonText);
-        document.body.appendChild(newbutton);
+        buttonDiv.appendChild(newbutton);
+
+        newbutton.setAttribute("id", "button" + i);
+
+
+        }
+
+        var button0 = document.getElementById("button0");
+        var button1 = document.getElementById("button1");
+        var button2 = document.getElementById("button2");
+
+        function DisplayData0 (){
+          alert(JSON.stringify(allData.rows[0]));
+             }
+
+        function DisplayData1 (){
+          alert(JSON.stringify(allData.rows[1]));
+                  }
+
+        function DisplayData2 (){
+          alert(JSON.stringify(allData.rows[2]));
+                       }
+
+        button0.addEventListener("click", DisplayData0);
+        button1.addEventListener("click", DisplayData1);
+        button2.addEventListener("click", DisplayData2);
+
+
+
 
       }
 
 
-      //var shows = document.getElementById("shows");
-    //  shows.innerHTML = JSON.stringify(allData.rows);
+
+
+      //var showDiv = document.getElementById("shows");
+      //var showInfo = document.createTextNode(JSON.stringify(allData.rows));
+      //showDiv.appendChild(showInfo);
+  //  }
+
     }
 
-}
+
+
+
 
   dbRequest.open('GET', 'http://localhost:4001/shows/0',true);
   dbRequest.send();

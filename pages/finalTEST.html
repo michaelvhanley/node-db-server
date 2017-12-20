@@ -1,0 +1,146 @@
+<html>
+  <h1>
+    Song Teaching Database
+  </h1>
+  <body>
+    Choose a Show
+
+  <p id="buttons">
+  <p id="shows">
+
+  Show Info
+
+  <p id="title"> Title:
+  <p id="composer"> Composer:
+  <p id="lyricist"> Lyricist:
+  <p id="year"> Year:
+  <p id="era"> Era:
+
+  </body>
+</html>
+
+<script>
+
+  var dbRequest = new XMLHttpRequest();
+
+
+
+
+  dbRequest.onreadystatechange = function (){
+    if (dbRequest.readyState == XMLHttpRequest.DONE) {
+      var allData = JSON.parse(dbRequest.response);
+      var buttonDiv = document.getElementById('buttons');
+      var showDIV = document.getElementById("shows");
+
+
+
+      for (i=0; i < allData.rows.length; i++) {
+        var newbutton = document.createElement("Button");
+        var buttonText = document.createTextNode(allData.rows[i].show_title);
+        var showData = JSON.stringify(allData.rows[i]);
+
+
+
+        newbutton.appendChild(buttonText);
+        buttonDiv.appendChild(newbutton);
+
+        newbutton.setAttribute("id", "button" + i);
+
+
+        }
+
+        var button0 = document.getElementById("button0");
+        var button1 = document.getElementById("button1");
+        var button2 = document.getElementById("button2");
+
+        function DisplayData0 (){
+          let title = document.createTextNode(JSON.stringify(allData.rows[0].show_title));
+          let composer = document.createTextNode(JSON.stringify(allData.rows[0].composer));
+          let lyricist = document.createTextNode(JSON.stringify(allData.rows[0].lyricist));
+          let year = document.createTextNode(JSON.stringify(allData.rows[0].year));
+          let era = document.createTextNode(JSON.stringify(allData.rows[0].era));
+
+          let titleInsert = document.getElementById("title");
+          let composerInsert = document.getElementById("composer");
+          let lyricistInsert = document.getElementById("lyricist");
+          let yearInsert = document.getElementById("year");
+          let eraInsert = document.getElementById("era");
+
+        
+
+          titleInsert.appendChild(title);
+          composerInsert.appendChild(composer);
+          lyricistInsert.appendChild(lyricist);
+          yearInsert.appendChild(year);
+          eraInsert.appendChild(era);
+
+
+          //alert(JSON.stringify(allData.rows[0]));
+             }
+
+        function DisplayData1 (){
+          let title = document.createTextNode(JSON.stringify(allData.rows[1].show_title));
+          let composer = document.createTextNode(JSON.stringify(allData.rows[1].composer));
+          let lyricist = document.createTextNode(JSON.stringify(allData.rows[1].lyricist));
+          let year = document.createTextNode(JSON.stringify(allData.rows[1].year));
+          let era = document.createTextNode(JSON.stringify(allData.rows[1].era));
+
+          let titleInsert = document.getElementById("title");
+          let composerInsert = document.getElementById("composer");
+          let lyricistInsert = document.getElementById("lyricist");
+          let yearInsert = document.getElementById("year");
+          let eraInsert = document.getElementById("era");
+          titleInsert.appendChild(title);
+          composerInsert.appendChild(composer);
+          lyricistInsert.appendChild(lyricist);
+          yearInsert.appendChild(year);
+          eraInsert.appendChild(era);
+                  }
+
+        function DisplayData2 (){
+          let title = document.createTextNode(JSON.stringify(allData.rows[2].show_title));
+          let composer = document.createTextNode(JSON.stringify(allData.rows[2].composer));
+          let lyricist = document.createTextNode(JSON.stringify(allData.rows[2].lyricist));
+          let year = document.createTextNode(JSON.stringify(allData.rows[2].year));
+          let era = document.createTextNode(JSON.stringify(allData.rows[2].era));
+
+          let titleInsert = document.getElementById("title");
+          let composerInsert = document.getElementById("composer");
+          let lyricistInsert = document.getElementById("lyricist");
+          let yearInsert = document.getElementById("year");
+          let eraInsert = document.getElementById("era");
+          titleInsert.appendChild(title);
+          composerInsert.appendChild(composer);
+          lyricistInsert.appendChild(lyricist);
+          yearInsert.appendChild(year);
+          eraInsert.appendChild(era);
+                       }
+
+        button0.addEventListener("click", DisplayData0);
+        button1.addEventListener("click", DisplayData1);
+        button2.addEventListener("click", DisplayData2);
+
+
+
+
+      }
+
+
+
+
+      //var showDiv = document.getElementById("shows");
+      //var showInfo = document.createTextNode(JSON.stringify(allData.rows));
+      //showDiv.appendChild(showInfo);
+  //  }
+
+    }
+
+
+
+
+
+  dbRequest.open('GET', 'http://localhost:4001/shows/0',true);
+  dbRequest.send();
+
+
+</script>
